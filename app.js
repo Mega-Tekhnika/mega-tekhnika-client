@@ -1,18 +1,19 @@
-function login() {
+function login(){
 
-```
-const order = document.getElementById("orderNumber").value.trim();
-const code = document.getElementById("accessCode").value.trim();
+const order =
+document.getElementById("orderNumber").value;
 
-if (order === "123456" && code === "123456") {
+const code =
+document.getElementById("accessCode").value;
 
-    window.location.href = "cabinet.html";
+if(order === "123456" && code === "123456"){
 
-} else {
+window.location.href = "cabinet.html";
 
-    alert("Невірний номер замовлення або код доступу");
+}else{
+
+alert("Невірний номер замовлення або код доступу");
 
 }
-```
 
 }
