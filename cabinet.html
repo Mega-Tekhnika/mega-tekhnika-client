@@ -8,117 +8,213 @@
 </head>
 <body>
 
-<div class="dashboard">
+<div class="background"></div>
 
-    <aside class="sidebar">
+<div class="page">
 
-        <div class="sidebar-logo">
-            <div class="logo-box">MT</div>
-            <div>
-                <h3>MEGA_TEKHNIKA</h3>
-                <span>Кабінет клієнта</span>
-            </div>
-        </div>
+<div class="login-card" style="max-width:1100px;width:100%;">
 
-        <nav>
+<div style="display:flex;gap:20px;flex-wrap:wrap;">
 
-            <a href="#" class="menu-item active">🏠 Головна</a>
+<div style="width:220px;">
 
-            <a href="#" class="menu-item">📦 Замовлення</a>
+<div class="logo" style="justify-content:flex-start;margin-bottom:25px;">
 
-            <a href="#" class="menu-item">🚚 Доставка</a>
+<div class="logo-icon">MT</div>
 
-            <a href="#" class="menu-item">🎁 Бонуси</a>
-
-            <a href="#" class="menu-item">🛡️ Гарантія</a>
-
-            <a href="#" class="menu-item">💬 Підтримка</a>
-
-        </nav>
-
-        <button class="logout-btn" onclick="window.location='index.html'">
-            Вийти
-        </button>
-
-    </aside>
-
-    <main class="content">
-
-        <div class="topbar">
-    <div>
-        <h1>Замовлення №9203</h1>
-        <p>Останнє оновлення: сьогодні о 14:25</p>
-    </div>
-
-```
-<div class="premium-badge">
-    PREMIUM
+<div>
+<h2 style="font-size:20px;">MEGA_TEKHNIKA</h2>
+<span>Кабінет клієнта</span>
 </div>
-```
 
 </div>
 
-<div class="sections">
+<button class="tab-btn" onclick="showTab('home')">
+🏠 Головна
+</button>
 
-```
-<div id="home-section">
+<button class="tab-btn" onclick="showTab('orders')">
+📦 Замовлення
+</button>
 
-    <div class="grid">
+<button class="tab-btn" onclick="showTab('delivery')">
+🚚 Доставка
+</button>
 
-        <div class="card featured">
-            <h2>📱 Поточне замовлення</h2>
+<button class="tab-btn" onclick="showTab('bonus')">
+🎁 Бонуси
+</button>
 
-            <div class="product-name">
-                iPhone 16 Pro Black
-            </div>
+<button class="tab-btn" onclick="showTab('support')">
+💬 Підтримка
+</button>
 
-            <div class="product-memory">
-                512 ГБ
-            </div>
-
-            <div class="price">
-                12 600 ₴
-            </div>
-
-            <div class="status status-active">
-                В ДОРОЗІ
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>🎁 Бонусний рахунок</h2>
-
-            <div class="balance">
-                350 ₴
-            </div>
-
-            <p>Доступно для використання</p>
-        </div>
-
-        <div class="card">
-            <h2>🚚 Відстеження</h2>
-
-            <div class="timeline">
-                <div class="done">✓ Замовлення оформлено</div>
-                <div class="done">✓ Передоплату отримано</div>
-                <div class="done">✓ Передано постачальнику</div>
-                <div class="active-step">● В дорозі</div>
-                <div>○ Прибуло в Україну</div>
-                <div>○ Доставлено</div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-```
+<button class="logout-btn"
+onclick="window.location='index.html'">
+Вийти
+</button>
 
 </div>
 
+<div style="flex:1;min-width:300px;">
 
-    </main>
+<div id="home" class="tab-content">
+
+<h1>Вітаємо 👋</h1>
+
+<br>
+
+<div class="demo-info">
+
+<h3>Ваше замовлення</h3>
+
+<br>
+
+<p><strong>iPhone 16 Pro Black</strong></p>
+
+<p>512 ГБ</p>
+
+<br>
+
+<div style="font-size:36px;font-weight:700;color:#0ea5e9;">
+12 600 ₴
+</div>
+
+<br>
+
+<div style="display:inline-block;padding:10px 18px;background:#2563eb;border-radius:999px;">
+В ДОРОЗІ
+</div>
 
 </div>
+
+</div>
+<div id="orders" class="tab-content" style="display:none;">
+
+<div class="demo-info">
+
+<h2>Замовлення №123456</h2>
+
+<br>
+
+<p>📱 iPhone 16 Pro Black</p>
+<p>💾 512 ГБ</p>
+<p>💰 12 600 ₴</p>
+<p>📦 В дорозі</p>
+
+</div>
+
+</div>
+
+<div id="delivery" class="tab-content" style="display:none;">
+
+<div class="demo-info">
+
+<h2>Статус доставки</h2>
+
+<br>
+
+<p>✅ Замовлення оформлено</p>
+<p>✅ Передоплату отримано</p>
+<p>✅ Передано постачальнику</p>
+<p style="color:#0ea5e9;">● В дорозі</p>
+<p>○ Прибуло в Україну</p>
+<p>○ Доставлено</p>
+
+</div>
+
+</div>
+
+<div id="bonus" class="tab-content" style="display:none;">
+
+<div class="demo-info">
+
+<h2>Бонусний баланс</h2>
+
+<br>
+
+<div style="font-size:50px;font-weight:700;color:#0ea5e9;">
+350 ₴
+</div>
+
+<p>Доступно для використання</p>
+
+</div>
+
+</div>
+
+<div id="support" class="tab-content" style="display:none;">
+
+<div class="demo-info">
+
+<h2>Підтримка</h2>
+
+<br>
+
+<input type="text" placeholder="Ваше ім'я">
+
+<textarea
+placeholder="Ваше повідомлення"
+style="width:100%;height:140px;background:#0f172a;border:1px solid #1e293b;border-radius:14px;color:white;padding:15px;margin-bottom:15px;"></textarea>
+
+<button onclick="alert('Ваше звернення прийнято')">
+Надіслати
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function showTab(tab){
+
+document.querySelectorAll('.tab-content')
+.forEach(el => el.style.display = 'none');
+
+document.getElementById(tab).style.display = 'block';
+
+}
+
+</script>
+
+<style>
+
+.tab-btn{
+width:100%;
+margin-bottom:10px;
+padding:14px;
+border:none;
+border-radius:14px;
+background:#0f172a;
+color:white;
+cursor:pointer;
+}
+
+.tab-btn:hover{
+background:#1e293b;
+}
+
+.logout-btn{
+width:100%;
+margin-top:20px;
+padding:14px;
+border:none;
+border-radius:14px;
+background:#dc2626;
+color:white;
+cursor:pointer;
+}
+
+</style>
 
 </body>
 </html>
