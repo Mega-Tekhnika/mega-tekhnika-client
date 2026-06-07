@@ -4,26 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MEGA_TEKHNIKA</title>
-
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="container">
+<div class="hero">
 
-    <h1>MEGA_TEKHNIKA</h1>
-    <p>Особистий кабінет клієнта</p>
+    <div class="logo">
+        MEGA_TEKHNIKA
+    </div>
 
-    <div class="card">
+    <h1>Особистий кабінет клієнта</h1>
 
-        <input type="text" id="orderNumber" placeholder="Номер замовлення">
+    <p class="subtitle">
+        Перевірка статусу замовлення онлайн
+    </p>
 
-        <input type="text" id="accessCode" placeholder="Код доступу">
+    <div class="login-card">
+
+        <input
+            type="text"
+            id="orderNumber"
+            placeholder="Номер замовлення">
+
+        <input
+            type="text"
+            id="accessCode"
+            placeholder="Код доступу">
 
         <button onclick="login()">
             Увійти
         </button>
+
+        <div class="demo">
+            Демо доступ:<br>
+            Замовлення: <b>9203</b><br>
+            Код: <b>MTK-9203</b>
+        </div>
 
     </div>
 
