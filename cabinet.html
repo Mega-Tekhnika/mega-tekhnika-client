@@ -3,161 +3,653 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEGA_TEKHNIKA | Кабінет</title>
-<link rel="stylesheet" href="style.css">
+<title>MEGA_TEKHNIKA | Особистий кабінет</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,Arial,sans-serif;
+}
+
+body{
+background:#030712;
+color:white;
+min-height:100vh;
+}
+
+.background{
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top left,#1e3a8a20,transparent 30%),
+radial-gradient(circle at bottom right,#0ea5e920,transparent 30%);
+}
+
+.wrapper{
+position:relative;
+z-index:2;
+max-width:1200px;
+margin:40px auto;
+padding:20px;
+}
+
+.top-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.logo{
+width:50px;
+height:50px;
+border-radius:16px;
+background:linear-gradient(135deg,#2563eb,#0ea5e9);
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:700;
+}
+
+.brand-info h2{
+font-size:28px;
+}
+
+.brand-info span{
+color:#94a3b8;
+font-size:13px;
+}
+
+.logout{
+color:white;
+text-decoration:none;
+}
+
+.client-box{
+margin-top:15px;
+margin-bottom:25px;
+}
+
+.client-box h3{
+font-size:28px;
+margin-bottom:8px;
+}
+
+.client-box p{
+color:#94a3b8;
+}
+
+.badges{
+margin-top:15px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.badge{
+padding:8px 14px;
+border-radius:999px;
+background:#111827;
+border:1px solid #1f2937;
+font-size:13px;
+}
+
+.layout{
+display:flex;
+gap:20px;
+}
+
+.sidebar{
+width:260px;
+background:#08101f;
+border:1px solid rgba(255,255,255,.05);
+border-radius:24px;
+padding:18px;
+}
+
+.sidebar-title{
+font-size:12px;
+letter-spacing:2px;
+color:#94a3b8;
+margin-bottom:15px;
+}
+
+.menu-btn{
+width:100%;
+border:none;
+cursor:pointer;
+padding:14px;
+margin-bottom:10px;
+border-radius:14px;
+background:transparent;
+color:white;
+text-align:left;
+transition:.2s;
+}
+
+.menu-btn:hover{
+background:#111827;
+}
+
+.menu-btn.active{
+background:#052e16;
+}
+
+.content{
+flex:1;
+background:#08101f;
+border:1px solid rgba(255,255,255,.05);
+border-radius:24px;
+padding:20px;
+}
+
+.tab{
+display:none;
+}
+
+.tab.active{
+display:block;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.card{
+background:#0b1220;
+border:1px solid rgba(255,255,255,.05);
+border-radius:18px;
+padding:16px;
+}
+
+.card-title{
+font-size:18px;
+margin-bottom:12px;
+}
+
+.status-green{
+background:#064e3b;
+padding:8px 12px;
+border-radius:999px;
+display:inline-block;
+}
+
+@media(max-width:900px){
+
+.layout{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <div class="background"></div>
 
-<div class="page">
+<div class="wrapper">
 
-<div class="login-card" style="max-width:1100px;width:100%;">
+<div class="top-header">
 
-<div style="display:flex;gap:20px;flex-wrap:wrap;">
+<div class="brand">
 
-<div style="width:220px;">
+<div class="logo">
+MT
+</div>
 
-<div class="logo" style="justify-content:flex-start;margin-bottom:25px;">
-
-<div class="logo-icon">MT</div>
-
-<div>
-<h2 style="font-size:20px;">MEGA_TEKHNIKA</h2>
-<span>Кабінет клієнта</span>
+<div class="brand-info">
+<h2>MEGA_TEKHNIKA</h2>
+<span>Особистий кабінет</span>
 </div>
 
 </div>
 
-<button class="tab-btn" onclick="showTab('home')">
+<a class="logout" href="index.html">
+Вийти
+</a>
+
+</div>
+
+<div class="client-box">
+
+<h3>Вітаємо, Іван</h3>
+
+<p>
+Ваш персональний кабінет: замовлення, бонуси,
+адреси та зв'язок із менеджером.
+</p>
+
+<div class="badges">
+
+<div class="badge">
+Статус: Premium
+</div>
+
+<div class="badge">
+Токен: 123456
+</div>
+
+</div>
+
+</div>
+
+<div class="layout">
+
+<div class="sidebar">
+
+<div class="sidebar-title">
+РОЗДІЛИ КАБІНЕТУ
+</div>
+
+<button class="menu-btn active"
+onclick="showTab('home',this)">
 🏠 Головна
 </button>
 
-<button class="tab-btn" onclick="showTab('orders')">
+<button class="menu-btn"
+onclick="showTab('orders',this)">
 📦 Замовлення
 </button>
 
-<button class="tab-btn" onclick="showTab('delivery')">
-🚚 Доставка
+<button class="menu-btn"
+onclick="showTab('bonus',this)">
+🎁 Бонуси / Знижки
 </button>
 
-<button class="tab-btn" onclick="showTab('bonus')">
-🎁 Бонуси
+<button class="menu-btn"
+onclick="showTab('profile',this)">
+👤 Персональні дані
 </button>
 
-<button class="tab-btn" onclick="showTab('support')">
+<button class="menu-btn"
+onclick="showTab('address',this)">
+📍 Адреси доставки
+</button>
+
+<button class="menu-btn"
+onclick="showTab('support',this)">
 💬 Підтримка
-</button>
-
-<button class="logout-btn"
-onclick="window.location='index.html'">
-Вийти
 </button>
 
 </div>
 
-<div style="flex:1;min-width:300px;">
+<div class="content">
 
-<div id="home" class="tab-content">
+<div id="home" class="tab active">
 
-<h1>Вітаємо 👋</h1>
+<h2 style="margin-bottom:15px;">
+Головна
+</h2>
 
-<br>
+<div class="grid">
 
-<div class="demo-info">
+<div class="card">
 
-<h3>Ваше замовлення</h3>
+<div class="card-title">
+Поточне замовлення
+</div>
 
-<br>
-
-<p><strong>iPhone 16 Pro Black</strong></p>
+<p><b>iPhone 16 Pro Black</b></p>
 
 <p>512 ГБ</p>
 
 <br>
 
-<div style="font-size:36px;font-weight:700;color:#0ea5e9;">
-12 600 ₴
+<div class="status-green">
+В дорозі
 </div>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+Ваші бонуси
+</div>
+
+<h2>350 ₴</h2>
+
+<p>Кешбек 3%</p>
+
+</div>
+
+  <div class="card">
+
+<div class="card-title">
+Персональні пропозиції
+</div>
+
+<ul style="padding-left:20px;line-height:1.8;">
+<li>Знижка 15% на аксесуари</li>
+<li>Подарунок до наступного замовлення</li>
+<li>Промокод PREMIUM-7</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+Коротко по замовленнях
+</div>
+
+<p>Всього замовлень: <b>4</b></p>
 
 <br>
 
-<div style="display:inline-block;padding:10px 18px;background:#2563eb;border-radius:999px;">
-В ДОРОЗІ
-</div>
+<p>Загальна сума:</p>
+
+<h3>54 500 ₴</h3>
 
 </div>
 
 </div>
-<div id="orders" class="tab-content" style="display:none;">
 
-<div class="demo-info">
+</div>
 
-<h2>Замовлення №123456</h2>
+<!-- ЗАМОВЛЕННЯ -->
+
+<div id="orders" class="tab">
+
+<h2 style="margin-bottom:15px;">
+Замовлення
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-title">
+Поточне замовлення
+</div>
+
+<p><b>№123456</b></p>
 
 <br>
 
-<p>📱 iPhone 16 Pro Black</p>
-<p>💾 512 ГБ</p>
-<p>💰 12 600 ₴</p>
-<p>📦 В дорозі</p>
-
-</div>
-
-</div>
-
-<div id="delivery" class="tab-content" style="display:none;">
-
-<div class="demo-info">
-
-<h2>Статус доставки</h2>
+<p>iPhone 16 Pro Black</p>
+<p>512 ГБ</p>
+<p>12 600 ₴</p>
 
 <br>
 
-<p>✅ Замовлення оформлено</p>
-<p>✅ Передоплату отримано</p>
-<p>✅ Передано постачальнику</p>
-<p style="color:#0ea5e9;">● В дорозі</p>
-<p>○ Прибуло в Україну</p>
-<p>○ Доставлено</p>
+<div class="status-green">
+Активне
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+Історія замовлень
+</div>
+
+<table style="width:100%;border-collapse:collapse;">
+
+<tr>
+<td>№9201</td>
+<td>19 900 ₴</td>
+</tr>
+
+<tr>
+<td>№8810</td>
+<td>8 900 ₴</td>
+</tr>
+
+<tr>
+<td>№9740</td>
+<td>12 900 ₴</td>
+</tr>
+
+</table>
 
 </div>
 
 </div>
 
-<div id="bonus" class="tab-content" style="display:none;">
+</div>
 
-<div class="demo-info">
+<!-- БОНУСИ -->
 
-<h2>Бонусний баланс</h2>
+<div id="bonus" class="tab">
+
+<h2 style="margin-bottom:15px;">
+Бонуси та знижки
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-title">
+Поточний баланс
+</div>
+
+<h1>350 ₴</h1>
 
 <br>
 
-<div style="font-size:50px;font-weight:700;color:#0ea5e9;">
-350 ₴
-</div>
-
-<p>Доступно для використання</p>
+<p>Заморожено: 40 ₴</p>
 
 </div>
 
+<div class="card">
+
+<div class="card-title">
+Персональні знижки
 </div>
 
-<div id="support" class="tab-content" style="display:none;">
+<p>
+Тут будуть відображатися ваші
+індивідуальні пропозиції.
+</p>
 
-<div class="demo-info">
+</div>
 
-<h2>Підтримка</h2>
+</div>
+
+</div>
+
+<!-- ПРОФІЛЬ -->
+
+<div id="profile" class="tab">
+
+<h2 style="margin-bottom:15px;">
+Персональна інформація
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-title">
+Основні дані
+</div>
+
+<p>Ім'я: Роман</p>
 
 <br>
 
-<input type="text" placeholder="Ваше ім'я">
+<p>Телефон:</p>
+
+<p>+380 73 000 00 00</p>
+
+<br>
+
+<p>E-mail:</p>
+
+<p>client@example.com</p>
+
+</div>
+
+  <div class="card">
+
+<div class="card-title">
+Безпека
+</div>
+
+<input type="password"
+placeholder="Новий пароль"
+style="width:100%;padding:12px;background:#111827;border:1px solid #1f2937;border-radius:10px;color:white;margin-bottom:10px;">
+
+<input type="password"
+placeholder="Повторіть пароль"
+style="width:100%;padding:12px;background:#111827;border:1px solid #1f2937;border-radius:10px;color:white;margin-bottom:10px;">
+
+<button style="
+padding:12px 18px;
+background:#16a34a;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;">
+Зберегти
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- АДРЕСИ -->
+
+<div id="address" class="tab">
+
+<h2 style="margin-bottom:15px;">
+Адреси доставки
+</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<div class="card-title">
+Збережені адреси
+</div>
+
+<p>
+<b>Основна</b>
+</p>
+
+<p>
+м. Харків
+</p>
+
+<p>
+Відділення НП №121
+</p>
+
+<br>
+
+<p>
+<b>Додаткова</b>
+</p>
+
+<p>
+м. Київ
+</p>
+
+<p>
+Відділення НП №15
+</p>
+
+</div>
+
+<div class="card">
+
+<div class="card-title">
+Додати адресу
+</div>
+
+<input type="text"
+placeholder="Місто"
+style="width:100%;padding:12px;background:#111827;border:1px solid #1f2937;border-radius:10px;color:white;margin-bottom:10px;">
+
+<input type="text"
+placeholder="Відділення Нової Пошти"
+style="width:100%;padding:12px;background:#111827;border:1px solid #1f2937;border-radius:10px;color:white;margin-bottom:10px;">
+
+<button style="
+padding:12px 18px;
+background:#16a34a;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;">
+Додати адресу
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ПІДТРИМКА -->
+
+<div id="support" class="tab">
+
+<h2 style="margin-bottom:15px;">
+Підтримка
+</h2>
+
+<div class="card">
+
+<p style="margin-bottom:15px;">
+Менеджер онлайн. Ви можете залишити повідомлення.
+</p>
+
+<div style="
+background:#111827;
+padding:15px;
+border-radius:12px;
+margin-bottom:15px;">
+👋 Вітаємо! Це демонстраційний чат підтримки.
+</div>
 
 <textarea
-placeholder="Ваше повідомлення"
-style="width:100%;height:140px;background:#0f172a;border:1px solid #1e293b;border-radius:14px;color:white;padding:15px;margin-bottom:15px;"></textarea>
+placeholder="Напишіть повідомлення..."
+style="
+width:100%;
+height:140px;
+padding:15px;
+background:#111827;
+border:1px solid #1f2937;
+border-radius:12px;
+color:white;
+resize:none;
+margin-bottom:10px;"></textarea>
 
-<button onclick="alert('Ваше звернення прийнято')">
+<button style="
+padding:12px 20px;
+background:#16a34a;
+border:none;
+border-radius:10px;
+color:white;
+cursor:pointer;">
 Надіслати
 </button>
 
@@ -165,9 +657,7 @@ style="width:100%;height:140px;background:#0f172a;border:1px solid #1e293b;borde
 
 </div>
 
-</div>
-
-</div>
+  </div>
 
 </div>
 
@@ -175,46 +665,29 @@ style="width:100%;height:140px;background:#0f172a;border:1px solid #1e293b;borde
 
 <script>
 
-function showTab(tab){
+function showTab(tabId, button){
 
-document.querySelectorAll('.tab-content')
-.forEach(el => el.style.display = 'none');
+document
+.querySelectorAll('.tab')
+.forEach(tab=>{
+tab.classList.remove('active');
+});
 
-document.getElementById(tab).style.display = 'block';
+document
+.getElementById(tabId)
+.classList.add('active');
+
+document
+.querySelectorAll('.menu-btn')
+.forEach(btn=>{
+btn.classList.remove('active');
+});
+
+button.classList.add('active');
 
 }
 
 </script>
-
-<style>
-
-.tab-btn{
-width:100%;
-margin-bottom:10px;
-padding:14px;
-border:none;
-border-radius:14px;
-background:#0f172a;
-color:white;
-cursor:pointer;
-}
-
-.tab-btn:hover{
-background:#1e293b;
-}
-
-.logout-btn{
-width:100%;
-margin-top:20px;
-padding:14px;
-border:none;
-border-radius:14px;
-background:#dc2626;
-color:white;
-cursor:pointer;
-}
-
-</style>
 
 </body>
 </html>
