@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEGA_TEKHNIKA | Вхід</title>
+<title>MEGA_TEKHNIKA | Кабінет клієнта</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -12,62 +12,96 @@
 
 <div class="background"></div>
 
-<div class="page">
+<div class="login-page">
 
-    <div class="login-container">
+<div class="login-box">
 
-        <div class="logo">
+<div class="brand">
 
-            <div class="logo-icon">
-                MT
-            </div>
+<div class="brand-logo">
+MT
+</div>
 
-            <div>
-                <h2>MEGA_TEKHNIKA</h2>
-                <span>Особистий кабінет клієнта</span>
-            </div>
+<div class="brand-text">
+<h2>MEGA_TEKHNIKA</h2>
+<span>особистий кабінет клієнта</span>
+</div>
 
-        </div>
+</div>
 
-        <div class="login-card">
+<h1>
+Вхід до кабінету клієнта
+</h1>
 
-            <h1>Вхід до кабінету</h1>
+<p class="description">
+Введіть номер замовлення та код доступу,
+які були надані менеджером.
+</p>
 
-            <p class="subtitle">
-                Перевірка статусу замовлення, бонусів та доставки
-            </p>
+<div class="demo-card">
 
-            <div class="demo-info">
+<div>
 
-                <strong>Демо доступ</strong>
+<strong>
+Демо-доступ для перевірки
+</strong>
 
-                <p>Замовлення: 123456</p>
+<p>
+Номер замовлення: 123456
+</p>
 
-                <p>Код доступу: 123456</p>
+<p>
+Код доступу: 123456
+</p>
 
-            </div>
+</div>
 
-            <input
-                type="text"
-                id="orderNumber"
-                placeholder="Номер замовлення">
+<div class="demo-badge">
+Демо
+</div>
 
-            <input
-                type="password"
-                id="accessCode"
-                placeholder="Код доступу">
+</div>
 
-            <button onclick="login()">
-                Увійти до кабінету
-            </button>
+<label>
+Номер замовлення
+</label>
 
-            <div class="secure">
-                🔒 Захищене підключення
-            </div>
+<input
+type="text"
+id="orderNumber"
+placeholder="Наприклад: 123456">
 
-        </div>
+<label>
+Код доступу
+</label>
 
-    </div>
+<input
+type="password"
+id="accessCode"
+placeholder="Код від менеджера">
+
+<div class="buttons">
+
+<button onclick="login()">
+Увійти до кабінету
+</button>
+
+</div>
+
+<div class="secure">
+
+🔒 Захищене підключення
+
+</div>
+
+<div class="footer-note">
+
+Якщо ви втратили дані для входу,
+зв'яжіться з менеджером.
+
+</div>
+
+</div>
 
 </div>
 
