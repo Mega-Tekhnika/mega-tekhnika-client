@@ -1,71 +1,73 @@
 <!DOCTYPE html>
-
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEGA_TEKHNIKA</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<title>MEGA_TEKHNIKA | Вхід</title>
 
+<link rel="stylesheet" href="style.css">
+
+</head>
 <body>
 
 <div class="background"></div>
 
 <div class="page">
 
-```
-<div class="login-container">
+    <div class="login-container">
 
-    <div class="logo">
-        <div class="logo-icon">MT</div>
+        <div class="logo">
 
-        <div>
-            <h2>MEGA_TEKHNIKA</h2>
-            <span>Сервіс перевірки замовлень</span>
+            <div class="logo-icon">
+                MT
+            </div>
+
+            <div>
+                <h2>MEGA_TEKHNIKA</h2>
+                <span>Особистий кабінет клієнта</span>
+            </div>
+
         </div>
+
+        <div class="login-card">
+
+            <h1>Вхід до кабінету</h1>
+
+            <p class="subtitle">
+                Перевірка статусу замовлення, бонусів та доставки
+            </p>
+
+            <div class="demo-info">
+
+                <strong>Демо доступ</strong>
+
+                <p>Замовлення: 123456</p>
+
+                <p>Код доступу: 123456</p>
+
+            </div>
+
+            <input
+                type="text"
+                id="orderNumber"
+                placeholder="Номер замовлення">
+
+            <input
+                type="password"
+                id="accessCode"
+                placeholder="Код доступу">
+
+            <button onclick="login()">
+                Увійти до кабінету
+            </button>
+
+            <div class="secure">
+                🔒 Захищене підключення
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="login-card">
-
-        <h1>Перевірка замовлення</h1>
-
-        <p class="subtitle">
-            Введіть номер замовлення та код доступу
-        </p>
-
-        <div class="demo-info">
-
-            <strong>Демо доступ</strong>
-
-            <p>Замовлення: 123456</p>
-
-            <p>Код: 123456</p>
-
-        </div>
-
-        <input
-            type="text"
-            id="orderNumber"
-            placeholder="Номер замовлення">
-
-        <input
-            type="text"
-            id="accessCode"
-            placeholder="Код доступу">
-
-        <button onclick="login()">
-            Увійти
-        </button>
-
-        <div class="secure">
-            🔒 Захищене з'єднання
-        </div>
-
-    </div>
-
-</div>
-```
 
 </div>
 
