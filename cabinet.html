@@ -3,30 +3,125 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Кабінет клієнта</title>
+<title>MEGA_TEKHNIKA | Кабінет</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="hero">
+<div class="dashboard">
 
-<h1>Замовлення №9203</h1>
+    <aside class="sidebar">
 
-<div class="login-card">
+        <div class="sidebar-logo">
+            <div class="logo-box">MT</div>
+            <div>
+                <h3>MEGA_TEKHNIKA</h3>
+                <span>Кабінет клієнта</span>
+            </div>
+        </div>
 
-<h3>📱 iPhone 16 Pro Black</h3>
+        <nav>
 
-<br>
+            <a href="#" class="menu-item active">🏠 Головна</a>
 
-<p>Пам'ять: 512 ГБ</p>
-<p>Вартість: 12 600 грн</p>
-<p>Статус: 📦 В дорозі</p>
+            <a href="#" class="menu-item">📦 Замовлення</a>
 
-<br>
+            <a href="#" class="menu-item">🚚 Доставка</a>
 
-<p>🎁 Бонусний баланс: 350 ₴</p>
+            <a href="#" class="menu-item">🎁 Бонуси</a>
 
-</div>
+            <a href="#" class="menu-item">🛡️ Гарантія</a>
+
+            <a href="#" class="menu-item">💬 Підтримка</a>
+
+        </nav>
+
+        <button class="logout-btn" onclick="window.location='index.html'">
+            Вийти
+        </button>
+
+    </aside>
+
+    <main class="content">
+
+        <div class="welcome-card">
+
+            <h1>Вітаємо 👋</h1>
+
+            <p>
+                Демонстраційний кабінет клієнта MEGA_TEKHNIKA
+            </p>
+
+        </div>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h2>📱 Поточне замовлення</h2>
+
+                <p><strong>iPhone 16 Pro Black</strong></p>
+
+                <p>512 ГБ</p>
+
+                <p>💰 12 600 грн</p>
+
+                <span class="status">
+                    📦 В дорозі
+                </span>
+
+            </div>
+
+            <div class="card">
+
+                <h2>🎁 Бонусний баланс</h2>
+
+                <div class="big-number">
+                    350 ₴
+                </div>
+
+                <p>
+                    Доступно для наступної покупки
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h2>🚚 Статус доставки</h2>
+
+                <ul class="timeline">
+                    <li>✅ Замовлення оформлено</li>
+                    <li>✅ Передоплату отримано</li>
+                    <li>✅ Передано постачальнику</li>
+                    <li>🟢 В дорозі</li>
+                    <li>⬜ Прибуло в Україну</li>
+                    <li>⬜ Доставлено</li>
+                </ul>
+
+            </div>
+
+            <div class="card">
+
+                <h2>💬 Підтримка</h2>
+
+                <button class="action-btn">
+                    Telegram
+                </button>
+
+                <button class="action-btn">
+                    Viber
+                </button>
+
+                <button class="action-btn">
+                    WhatsApp
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
 
 </div>
 
