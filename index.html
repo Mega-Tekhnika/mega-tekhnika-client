@@ -689,75 +689,75 @@
   <!-- LOGIN SCREEN -->
   <div id="login-screen" class="card">
    <div class="logo-row">
-    <div class="logo-icon"></div>
+    <div class="logo-icon">MT</div>
     <div>
-     <div class="logo-text-main">AM Market</div>
-     <div class="logo-text-sub">Личный кабинет клиента</div>
+     <div class="logo-text-main">Mega_Tekhnika</div>
+     <div class="logo-text-sub">Особистий кабінет Клієнта</div>
     </div>
    </div>
 
-   <div class="login-title">Вход по клиентскому токену</div>
+   <div class="login-title">Вхід до кабінету клієнта</div>
    <div class="login-subtitle">
-    Введите цифровой номер клиента и пароль, которые вы получили от менеджера AM Market.
+    Введіть номер замовлення та код доступу, які були надані менеджером MEGA_TEKHNIKA.
    </div>
 
    <div class="section-card" style="margin-top:10px;">
     <div class="section-header">
-     <div class="section-title">Демо-доступ для проверки кабинета</div>
-     <span class="section-badge">Можно использовать прямо сейчас</span>
+     <div class="section-title">Демо-доступ для перевірки кабінетуа</div>
+     <span class="section-badge">Можна використати прямо зараз</span>
     </div>
     <div class="section-content">
-     Токен клиента: <code id="demo-token">749201</code><br />
+     Токен клиента: <code id="demo-token">9053</code><br />
      Пароль: <code id="demo-pass">123456</code><br />
-     <span style="font-size:11px;color:var(--muted);">Эти данные только для демонстрации интерфейса.</span>
+     <span style="font-size:11px;color:var(--muted);">Ці дані доступні для демонстрації кабінету.</span>
     </div>
    </div>
 
    <div class="login-grid">
     <div>
-     <div class="field-label">Токен клиента</div>
+     <div class="field-label">Номер замовлення</div>
      <input
       id="token-input"
       class="input"
-      placeholder="Например: 749201"
+      placeholder="Например: 9053"
       inputmode="numeric"
      />
-     <div class="field-hint">Цифровой номер, который вам выдал менеджер.</div>
+     <div class="field-hint">Номер замовлення, який вам надав менеджер.</div>
     </div>
 
     <div>
-     <div class="field-label">Пароль</div>
+     <div class="field-label">Код доступу</div>
      <input
       id="password-input"
       class="input"
       type="password"
-      placeholder="Пароль от менеджера"
+      placeholder="Код доступу"
      />
-     <div class="field-hint">Клиент может его сменить в кабинете.</div>
+     <div class="field-hint">Код доступу для входу до кабінету.</div>
     </div>
 
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
      <button id="login-btn" class="btn btn-primary">
-      Войти в кабинет
+      Увійти до кабінету
      </button>
      <button id="fill-demo-btn" class="btn btn-ghost btn-sm">
-      Подставить демо-данные
+      Заповнити демо
      </button>
      <div class="status-pill">
       <span class="status-dot"></span>
-      Защищённое соединение
+      Захищене з'єднання
      </div>
     </div>
    </div>
 
    <div id="login-error" class="error-box">
-    Неверный токен или пароль. Проверьте данные и попробуйте ещё раз.
-    <br />Для теста используйте: <strong>749201 / 123456</strong>.
+    Невірний номер замовлення або код доступу.
+    <br />Для перевірки використовуйте: <strong>9053 / 123456</strong>.
    </div>
 
    <div class="login-footer">
-    <span>Забыли токен или пароль? Свяжитесь с менеджером AM Market.</span>
-    <span>ID версии кабинета: <code>AM-CAB-1.0</code></span>
+    <span>Забули дані для входу? Зверніться до менеджера MEGA_TEKHNIKA.</span>
+    <span>ID Версія кабінету:: <code>MT-CAB-1.0</code></span>
    </div>
   </div>
 
