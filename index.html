@@ -1,111 +1,1703 @@
+
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MEGA_TEKHNIKA | Кабінет клієнта</title>
+ <meta charset="UTF-8" />
+ <title>AM Market – Личный кабинет</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <style>
+  :root {
+   --bg: #050509;
+   --bg-soft: #0d0d15;
+   --card: #141421;
+   --accent: #00c853;
+   --accent-soft: rgba(0, 200, 83, 0.12);
+   --accent-strong: rgba(0, 200, 83, 0.22);
+   --accent-text: #eafff3;
+   --border: #25253a;
+   --border-soft: #1a1a29;
+   --text: #f4f4ff;
+   --text-soft: #a9a9c7;
+   --danger: #ff5252;
+   --warning: #ffb300;
+   --muted: #55556d;
+   --shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+   --radius-lg: 24px;
+   --radius-full: 999px;
+  }
 
-<link rel="stylesheet" href="style.css">
+  * {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+  }
 
+  body {
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+   background: radial-gradient(circle at top left, #161628 0, #050509 45%, #000000 100%);
+   color: var(--text);
+   min-height: 100vh;
+   display: flex;
+   align-items: stretch;
+   justify-content: center;
+   padding: 24px;
+  }
+
+  #app {
+   width: 100%;
+   max-width: 1200px;
+   margin: auto;
+  }
+
+  .card {
+   background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+   border-radius: var(--radius-lg);
+   border: 1px solid var(--border);
+   box-shadow: var(--shadow);
+   padding: 24px;
+   backdrop-filter: blur(22px);
+  }
+
+  .hidden { display: none !important; }
+
+  /* LOGO */
+  .logo-row {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   margin-bottom: 20px;
+  }
+  .logo-icon {
+   width: 32px;
+   height: 32px;
+   border-radius: 10px;
+   background: radial-gradient(circle at 30% 20%, #ffffff 0, #d0d0ff 25%, #6363ff 55%, #111129 100%);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   font-weight: 700;
+   font-size: 18px;
+   color: var(--text);
+   box-shadow: 0 0 20px rgba(99, 99, 255, 0.7);
+  }
+  .logo-text-main {
+   font-weight: 700;
+   letter-spacing: 0.04em;
+   font-size: 20px;
+  }
+  .logo-text-sub {
+   font-size: 11px;
+   text-transform: uppercase;
+   letter-spacing: 0.16em;
+   color: var(--text-soft);
+  }
+
+  /* LOGIN */
+  #login-screen {
+   max-width: 480px;
+   margin: 0 auto;
+  }
+
+  .login-title {
+   font-size: 26px;
+   font-weight: 700;
+   margin-bottom: 10px;
+  }
+
+  .login-subtitle {
+   color: var(--text-soft);
+   font-size: 14px;
+   margin-bottom: 20px;
+  }
+
+  .login-grid {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 16px;
+   margin-top: 16px;
+  }
+
+  .field-label {
+   font-size: 13px;
+   color: var(--text-soft);
+   margin-bottom: 4px;
+  }
+
+  .field-hint {
+   font-size: 11px;
+   color: var(--muted);
+   margin-top: 3px;
+  }
+
+  .input {
+   width: 100%;
+   padding: 11px 13px;
+   border-radius: 12px;
+   border: 1px solid var(--border-soft);
+   background: rgba(7, 7, 14, 0.9);
+   color: var(--text);
+   font-size: 14px;
+   outline: none;
+   transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .input:focus {
+   border-color: var(--accent);
+   box-shadow: 0 0 0 1px var(--accent-soft);
+   background: rgba(11, 11, 20, 0.95);
+  }
+
+  .btn {
+   border: none;
+   cursor: pointer;
+   padding: 11px 18px;
+   border-radius: var(--radius-full);
+   font-size: 14px;
+   font-weight: 600;
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   gap: 8px;
+   transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.16s ease, opacity 0.16s ease;
+   white-space: nowrap;
+  }
+
+  .btn-primary {
+   background: linear-gradient(135deg, #00c853, #00e676);
+   color: #041307;
+   box-shadow: 0 10px 30px rgba(0, 200, 83, 0.4);
+  }
+
+  .btn-primary:hover {
+   transform: translateY(-1px);
+   box-shadow: 0 12px 34px rgba(0, 200, 83, 0.5);
+  }
+
+  .btn-ghost {
+   background: transparent;
+   color: var(--text-soft);
+   padding-inline: 12px;
+  }
+  .btn-ghost:hover {
+   background: rgba(255,255,255,0.05);
+  }
+
+  .btn-sm {
+   padding: 7px 12px;
+   font-size: 12px;
+   border-radius: 999px;
+  }
+
+  .status-pill {
+   display: inline-flex;
+   align-items: center;
+   padding: 4px 9px;
+   font-size: 11px;
+   border-radius: 999px;
+   background: rgba(255,255,255,0.03);
+   border: 1px solid rgba(255,255,255,0.06);
+   gap: 6px;
+  }
+
+  .status-dot {
+   width: 6px;
+   height: 6px;
+   border-radius: 999px;
+   background: var(--accent);
+  }
+
+  .danger { color: var(--danger); }
+  .error-box {
+   margin-top: 10px;
+   padding: 8px 10px;
+   border-radius: 12px;
+   border: 1px solid rgba(255, 82, 82, 0.7);
+   background: radial-gradient(circle at top left, rgba(255,82,82,0.2), rgba(10,0,0,0.9));
+   font-size: 12px;
+   color: #ffb3b3;
+   display: none;
+  }
+
+  .login-footer {
+   margin-top: 22px;
+   font-size: 11px;
+   color: var(--muted);
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+   flex-wrap: wrap;
+  }
+
+  /* LAYOUT DASHBOARD */
+  #dashboard {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
+   max-height: 100vh;
+  }
+
+  .dash-top {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   gap: 12px;
+  }
+
+  .user-greeting {
+   font-size: 18px;
+   font-weight: 600;
+  }
+  .user-sub {
+   font-size: 12px;
+   color: var(--text-soft);
+   margin-top: 2px;
+  }
+
+  .pill-row {
+   display: flex;
+   align-items: center;
+   gap: 10px;
+   flex-wrap: wrap;
+  }
+
+  .user-pill {
+   font-size: 12px;
+   padding: 4px 10px;
+   border-radius: 999px;
+   background: rgba(255,255,255,0.03);
+   border: 1px solid rgba(255,255,255,0.06);
+   color: var(--text-soft);
+  }
+
+  .logout-btn {
+   padding: 7px 12px;
+  }
+
+  .dash-body {
+   display: grid;
+   grid-template-columns: 280px 1fr;
+   gap: 16px;
+   margin-top: 4px;
+   min-height: 0;
+   flex: 1;
+  }
+
+  /* NAV */
+  .nav {
+   border-radius: var(--radius-lg);
+   border: 1px solid var(--border);
+   background: radial-gradient(circle at top left, rgba(255,255,255,0.04), rgba(6,6,12,0.96));
+   padding: 14px 12px;
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+   min-height: 0;
+  }
+
+  .nav-title {
+   font-size: 11px;
+   letter-spacing: 0.16em;
+   text-transform: uppercase;
+   color: var(--text-soft);
+   margin-bottom: 6px;
+   padding-inline: 8px;
+  }
+
+  .nav-item {
+   width: 100%;
+   text-align: left;
+   padding: 9px 10px;
+   border-radius: 999px;
+   border: none;
+   background: transparent;
+   color: var(--text-soft);
+   font-size: 13px;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   cursor: pointer;
+   transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
+  }
+
+  .nav-item span.icon {
+   font-size: 15px;
+   width: 18px;
+   text-align: center;
+  }
+
+  .nav-item.active {
+   background: radial-gradient(circle at top left, var(--accent-strong), rgba(0,0,0,0.9));
+   color: var(--accent-text);
+   transform: translateY(-1px);
+  }
+  .nav-item:hover:not(.active) {
+   background: rgba(255,255,255,0.03);
+   color: var(--text);
+  }
+
+  .nav-footer {
+   margin-top: auto;
+   padding-inline: 8px;
+   padding-top: 8px;
+   border-top: 1px dashed rgba(255,255,255,0.08);
+   font-size: 11px;
+   color: var(--muted);
+  }
+
+  /* CONTENT */
+  .content {
+   border-radius: var(--radius-lg);
+   border: 1px solid var(--border);
+   background: radial-gradient(circle at top left, rgba(255,255,255,0.04), rgba(4,4,10,0.96));
+   padding: 18px 18px 16px;
+   min-height: 0;
+   display: flex;
+   flex-direction: column;
+   gap: 12px;
+  }
+
+  .content-header {
+   display: flex;
+   justify-content: space-between;
+   gap: 10px;
+   align-items: center;
+  }
+
+  .content-title {
+   font-size: 18px;
+   font-weight: 600;
+  }
+
+  .content-subtitle {
+   font-size: 12px;
+   color: var(--text-soft);
+   margin-top: 2px;
+  }
+
+  .content-row {
+   display: grid;
+   grid-template-columns: 1.1fr 1fr;
+   gap: 12px;
+  }
+
+  .content-row-3 {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+   gap: 12px;
+  }
+
+  .content-row-2 {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 12px;
+  }
+
+  .section-card {
+   border-radius: 18px;
+   border: 1px solid rgba(255,255,255,0.06);
+   background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(8,8,20,0.9));
+   padding: 12px 13px 12px;
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+  }
+
+  .section-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 8px;
+  }
+
+  .section-title {
+   font-size: 13px;
+   font-weight: 600;
+  }
+
+  .section-badge {
+   font-size: 11px;
+   padding: 3px 8px;
+   border-radius: 999px;
+   background: rgba(255,255,255,0.04);
+   color: var(--text-soft);
+  }
+
+  .section-content {
+   font-size: 12px;
+   color: var(--text-soft);
+  }
+
+  .kpi-row {
+   display: flex;
+   gap: 10px;
+   flex-wrap: wrap;
+  }
+
+  .kpi-pill {
+   font-size: 11px;
+   padding: 6px 10px;
+   border-radius: 999px;
+   background: rgba(255,255,255,0.03);
+   border: 1px solid rgba(255,255,255,0.06);
+   display: inline-flex;
+   align-items: baseline;
+   gap: 5px;
+  }
+  .kpi-pill strong {
+   font-size: 13px;
+  }
+
+  .kpi-pill.accent {
+   background: var(--accent-soft);
+   border-color: var(--accent);
+   color: var(--accent-text);
+  }
+
+  /* TABLES */
+  .table {
+   width: 100%;
+   border-collapse: collapse;
+   font-size: 12px;
+   margin-top: 4px;
+  }
+
+  .table th,
+  .table td {
+   padding: 6px 8px;
+   border-bottom: 1px solid rgba(255,255,255,0.05);
+   text-align: left;
+  }
+
+  .table th {
+   font-size: 11px;
+   text-transform: uppercase;
+   letter-spacing: 0.08em;
+   color: var(--muted);
+  }
+
+  .table tr:last-of-type td {
+   border-bottom: none;
+  }
+
+  .table tr:hover td {
+   background: rgba(255,255,255,0.02);
+  }
+
+  .tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 6px;
+   padding: 2px 8px;
+   border-radius: 999px;
+   border: 1px solid rgba(255,255,255,0.08);
+   font-size: 11px;
+   color: var(--text-soft);
+  }
+  .tag-dot {
+   width: 6px;
+   height: 6px;
+   border-radius: 999px;
+   background: var(--accent);
+  }
+
+  .badge-status {
+   font-size: 11px;
+   padding: 3px 8px;
+   border-radius: 999px;
+   background: rgba(255,255,255,0.03);
+   border: 1px solid rgba(255,255,255,0.06);
+  }
+  .badge-status.success {
+   color: #7cffb4;
+   border-color: rgba(124,255,180,0.5);
+  }
+  .badge-status.pending {
+   color: #ffe082;
+   border-color: rgba(255,224,130,0.5);
+  }
+
+  /* LISTS & FORMS */
+  .field-row {
+   display: grid;
+   grid-template-columns: repeat(2, minmax(0, 1fr));
+   gap: 10px;
+  }
+
+  .form-group {
+   margin-bottom: 10px;
+  }
+
+  .pill-address {
+   border-radius: 14px;
+   border: 1px solid rgba(255,255,255,0.08);
+   padding: 8px 10px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 8px;
+   font-size: 12px;
+   background: rgba(255,255,255,0.02);
+  }
+  .pill-address-main {
+   font-size: 10px;
+   text-transform: uppercase;
+   letter-spacing: 0.12em;
+   color: var(--accent-text);
+   padding: 2px 7px;
+   border-radius: 999px;
+   background: var(--accent-soft);
+   border: 1px solid var(--accent);
+  }
+  .pill-address-actions {
+   display: flex;
+   gap: 6px;
+  }
+
+  /* CHAT */
+  .chat-wrap {
+   display: grid;
+   grid-template-rows: auto minmax(0, 1fr) auto;
+   gap: 8px;
+   height: 100%;
+  }
+
+  .chat-status {
+   font-size: 11px;
+   color: var(--text-soft);
+   display: flex;
+   align-items: center;
+   gap: 6px;
+  }
+
+  .chat-window {
+   border-radius: 14px;
+   border: 1px solid rgba(255,255,255,0.08);
+   background: rgba(0,0,0,0.55);
+   padding: 8px;
+   overflow: auto;
+   max-height: 240px;
+  }
+
+  .msg {
+   font-size: 12px;
+   padding: 7px 9px;
+   border-radius: 12px;
+   margin-bottom: 6px;
+   max-width: 82%;
+   line-height: 1.32;
+  }
+
+  .msg-manager {
+   background: rgba(255,255,255,0.04);
+   border: 1px solid rgba(255,255,255,0.08);
+   border-bottom-left-radius: 2px;
+  }
+
+  .msg-user {
+   margin-left: auto;
+   background: var(--accent);
+   color: #021207;
+   border-bottom-right-radius: 2px;
+  }
+
+  .msg-time {
+   font-size: 10px;
+   opacity: 0.6;
+   margin-top: 2px;
+  }
+
+  .chat-input-row {
+   display: flex;
+   align-items: center;
+   gap: 6px;
+  }
+
+  .chat-input-row input {
+   flex: 1;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 960px) {
+   body {
+    padding: 10px;
+   }
+   .dash-body {
+    grid-template-columns: 1fr;
+   }
+   .nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+   }
+   .nav-title,
+   .nav-footer {
+    display: none;
+   }
+   .nav-item {
+    flex: 1 0 calc(50% - 4px);
+   }
+  }
+
+  @media (max-width: 720px) {
+   .content-row,
+   .content-row-3,
+   .content-row-2,
+   .field-row {
+    grid-template-columns: 1fr;
+   }
+   .card {
+    padding: 18px 16px;
+   }
+   .dash-top {
+    flex-direction: column;
+    align-items: flex-start;
+   }
+  }
+ 
+/* ===== MOBILE ADAPTATION ===== */
+@media (max-width: 900px) {
+  .wrap { flex-direction: column; }
+  nav {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 1px solid #222;
+    gap: 8px;
+  }
+  nav button {
+    flex: 1;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 600px) {
+  body { font-size: 14px; }
+  #login-screen { margin: 30px 10px; }
+  .card { padding: 12px; border-radius: 12px; }
+  nav { padding: 10px; }
+  nav button { padding: 8px; font-size: 13px; }
+  main { padding: 10px; }
+  h2 { font-size: 18px; }
+  input, button { font-size: 14px; }
+}
+
+</style>
 </head>
 <body>
+ <div id="app">
+  <!-- LOGIN SCREEN -->
+  <div id="login-screen" class="card">
+   <div class="logo-row">
+    <div class="logo-icon"></div>
+    <div>
+     <div class="logo-text-main">AM Market</div>
+     <div class="logo-text-sub">Личный кабинет клиента</div>
+    </div>
+   </div>
 
-<div class="background"></div>
+   <div class="login-title">Вход по клиентскому токену</div>
+   <div class="login-subtitle">
+    Введите цифровой номер клиента и пароль, которые вы получили от менеджера AM Market.
+   </div>
 
-<div class="login-page">
+   <div class="section-card" style="margin-top:10px;">
+    <div class="section-header">
+     <div class="section-title">Демо-доступ для проверки кабинета</div>
+     <span class="section-badge">Можно использовать прямо сейчас</span>
+    </div>
+    <div class="section-content">
+     Токен клиента: <code id="demo-token">749201</code><br />
+     Пароль: <code id="demo-pass">123456</code><br />
+     <span style="font-size:11px;color:var(--muted);">Эти данные только для демонстрации интерфейса.</span>
+    </div>
+   </div>
 
-<div class="login-box">
+   <div class="login-grid">
+    <div>
+     <div class="field-label">Токен клиента</div>
+     <input
+      id="token-input"
+      class="input"
+      placeholder="Например: 749201"
+      inputmode="numeric"
+     />
+     <div class="field-hint">Цифровой номер, который вам выдал менеджер.</div>
+    </div>
 
-<div class="brand">
+    <div>
+     <div class="field-label">Пароль</div>
+     <input
+      id="password-input"
+      class="input"
+      type="password"
+      placeholder="Пароль от менеджера"
+     />
+     <div class="field-hint">Клиент может его сменить в кабинете.</div>
+    </div>
 
-<div class="brand-logo">
-MT
-</div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+     <button id="login-btn" class="btn btn-primary">
+      Войти в кабинет
+     </button>
+     <button id="fill-demo-btn" class="btn btn-ghost btn-sm">
+      Подставить демо-данные
+     </button>
+     <div class="status-pill">
+      <span class="status-dot"></span>
+      Защищённое соединение
+     </div>
+    </div>
+   </div>
 
-<div class="brand-text">
-<h2>MEGA_TEKHNIKA</h2>
-<span>особистий кабінет клієнта</span>
-</div>
+   <div id="login-error" class="error-box">
+    Неверный токен или пароль. Проверьте данные и попробуйте ещё раз.
+    <br />Для теста используйте: <strong>749201 / 123456</strong>.
+   </div>
 
-</div>
+   <div class="login-footer">
+    <span>Забыли токен или пароль? Свяжитесь с менеджером AM Market.</span>
+    <span>ID версии кабинета: <code>AM-CAB-1.0</code></span>
+   </div>
+  </div>
 
-<h1>
-Вхід до кабінету клієнта
-</h1>
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="hidden">
+   <div class="dash-top">
+    <div>
+     <div class="logo-row" style="margin-bottom:6px;">
+      <div class="logo-icon"></div>
+      <div>
+       <div class="logo-text-main">AM Market</div>
+       <div class="logo-text-sub">Личный кабинет</div>
+      </div>
+     </div>
+     <div class="user-greeting" id="user-greeting"></div>
+     <div class="user-sub">
+      Ваш персональный кабинет: заказы, бонусы, адреса и связь с менеджером в одном месте.
+     </div>
+     <div class="pill-row" style="margin-top:8px;">
+      <div class="user-pill" id="pill-tier">Статус: Клиент</div>
+      <div class="user-pill" id="pill-token">Токен: —</div>
+      
+     </div>
+    </div>
+    <button id="logout-btn" class="btn btn-ghost logout-btn">
+     Выйти
+    </button>
+   </div>
 
-<p class="description">
-Введіть номер замовлення та код доступу,
-які були надані менеджером.
-</p>
+   <div class="dash-body">
+    <!-- NAV -->
+    <nav class="nav">
+     <div class="nav-title">Разделы кабинета</div>
+     <button class="nav-item active" data-section="main">
+      <span class="icon">🏠</span>
+      Главная
+     </button>
+     <button class="nav-item" data-section="orders">
+      <span class="icon">📦</span>
+      Заказы
+     </button>
+     <button class="nav-item" data-section="bonuses">
+      <span class="icon">🎁</span>
+      Бонусы / Скидки
+     </button>
+     <button class="nav-item" data-section="profile">
+      <span class="icon">👤</span>
+      Персональные данные
+     </button>
+     <button class="nav-item" data-section="addresses">
+      <span class="icon">📍</span>
+      Адреса доставки
+     </button>
+     <button class="nav-item" data-section="support">
+      <span class="icon">💬</span>
+      Поддержка
+     </button>
 
-<div class="demo-card">
+     <div class="nav-footer">
+      Эти данные видит только клиент AM Market и менеджеры магазина.
+      Вы можете вручную выдавать токены и пароли.
+     </div>
+    </nav>
 
-<div>
+    <!-- CONTENT -->
+    <main class="content">
+     <!-- MAIN -->
+     <section id="section-main">
+      <div class="content-header">
+       <div>
+        <div class="content-title">Главная</div>
+        <div class="content-subtitle">
+         Краткое резюме по текущим заказам, бонусам и персональным предложениям.
+        </div>
+       </div>
+      </div>
 
-<strong>
-Демо-доступ для перевірки
-</strong>
+      <div class="content-row">
+       <div class="section-card" id="current-order-card">
+        <div class="section-header">
+         <div class="section-title">Текущий заказ</div>
+         <span class="section-badge" id="current-order-status-badge">Нет активных заказов</span>
+        </div>
+        <div class="section-content" id="current-order-content">
+         На данный момент у вас нет активных заказов. Как только вы оформите заказ через менеджера Apple Market, он появится здесь.
+        </div>
+       </div>
 
-<p>
-Номер замовлення: 123456
-</p>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Ваши бонусы</div>
+         <span class="section-badge">Кешбэк и скидки</span>
+        </div>
+        <div class="section-content">
+         <div class="kpi-row">
+          <div class="kpi-pill accent">
+           Баланс: <strong id="bonus-balance">0 BYN</strong>
+          </div>
+          <div class="kpi-pill">
+           Кешбэк: <strong id="bonus-cashback">0%</strong>
+          </div>
+          <div class="kpi-pill">
+           До следующего уровня: <strong id="bonus-to-next">—</strong>
+          </div>
+         </div>
+         <div style="margin-top:8px;font-size:11px;color:var(--muted);">
+          Бонусы можно использовать как скидку при следующих покупках через менеджера.
+         </div>
+        </div>
+       </div>
+      </div>
 
-<p>
-Код доступу: 123456
-</p>
+      <div class="content-row-3" style="margin-top:8px;">
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Персональные предложения</div>
+         <span class="section-badge">Рекомендации</span>
+        </div>
+        <div class="section-content" id="personal-offers">
+         Предложения сформируются на основе ваших прошлых покупок.
+        </div>
+       </div>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Кратко по заказам</div>
+         <span class="section-badge">История</span>
+        </div>
+        <div class="section-content" id="orders-summary">
+         Сумма заказов: —
+        </div>
+       </div>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Адреса доставки</div>
+         <span class="section-badge">Сохранённые адреса</span>
+        </div>
+        <div class="section-content" id="addresses-summary">
+         Пока нет сохранённых адресов.
+        </div>
+       </div>
+      </div>
+     </section>
 
-</div>
+     <!-- ORDERS -->
+     <section id="section-orders" class="hidden">
+      <div class="content-header">
+       <div>
+        <div class="content-title">Заказы</div>
+        <div class="content-subtitle">
+         Текщие заказы и история заказов в одном месте.
+        </div>
+       </div>
+      </div>
 
-<div class="demo-badge">
-Демо
-</div>
+      <div class="content-row">
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Текущие заказы</div>
+         <span class="section-badge" id="orders-current-count">0 активных</span>
+        </div>
+        <div class="section-content" id="orders-current-list">
+         Нет активных заказов.
+        </div>
+       </div>
 
-</div>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">История заказов</div>
+         <span class="section-badge">Последние заказы</span>
+        </div>
+        <div class="section-content">
+         <table class="table" id="orders-history-table">
+          <thead>
+           <tr>
+            <th>№ заказа</th>
+            <th>Дата</th>
+            <th>Сумма</th>
+            <th>Статус</th>
+            <th>Документы</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr>
+            <td colspan="5">История заказов появится после первой покупки.</td>
+           </tr>
+          </tbody>
+         </table>
+        </div>
+       </div>
+      </div>
+     </section>
 
-<label>
-Номер замовлення
-</label>
+     <!-- BONUSES -->
+     <section id="section-bonuses" class="hidden">
+      <div class="content-header">
+       <div>
+        <div class="content-title">Бонусы и скидки</div>
+        <div class="content-subtitle">
+         Здесь собраны все ваши бонусы, кешбэк и персональные скидки.
+        </div>
+       </div>
+      </div>
 
-<input
-type="text"
-id="orderNumber"
-placeholder="Наприклад: 123456">
+      <div class="content-row-2">
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Текущие бонусы</div>
+         <span class="section-badge">Баланс</span>
+        </div>
+        <div class="section-content">
+         <div class="kpi-row">
+          <div class="kpi-pill accent">
+           Баланс: <strong id="bonus-balance-2">0 BYN</strong>
+          </div>
+          <div class="kpi-pill">
+           Заморожено: <strong id="bonus-frozen">0 BYN</strong>
+          </div>
+         </div>
+         <div style="margin-top:8px;font-size:11px;color:var(--muted);">
+          Бонусы начисляются после подтверждения доставки заказа. Использовать бонусы можно при оформлении новых заказов через менеджера.
+         </div>
+        </div>
+       </div>
 
-<label>
-Код доступу
-</label>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Скидки</div>
+         <span class="section-badge">Персональные</span>
+        </div>
+        <div class="section-content" id="discounts-list">
+         Персональные скидки будут отображаться здесь.
+        </div>
+       </div>
+      </div>
+     </section>
 
-<input
-type="password"
-id="accessCode"
-placeholder="Код від менеджера">
+     <!-- PROFILE -->
+     <section id="section-profile" class="hidden">
+      <div class="content-header">
+       <div>
+        <div class="content-title">Персональная информация</div>
+        <div class="content-subtitle">
+         Имя, контакты, пароль и настройки безопасности.
+        </div>
+       </div>
+      </div>
 
-<div class="buttons">
+      <div class="content-row-2">
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Основные данные</div>
+         <span class="section-badge">Контакты</span>
+        </div>
+        <div class="section-content">
+         <div class="form-group">
+          <div class="field-label">Имя и фамилия</div>
+          <input id="profile-name" class="input" />
+         </div>
+         <div class="form-group">
+          <div class="field-label">Телефон</div>
+          <input id="profile-phone" class="input" placeholder="+375 (__) ___-__-__" />
+         </div>
+         <div class="form-group">
+          <div class="field-label">E-mail (по желанию)</div>
+          <input id="profile-email" class="input" placeholder="example@mail.com" />
+         </div>
+         <button class="btn btn-primary btn-sm" id="btn-save-profile">Сохранить данные</button>
+        </div>
+       </div>
 
-<button onclick="login()">
-Увійти до кабінету
-</button>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Пароль и безопасность</div>
+         <span class="section-badge">Доступ</span>
+        </div>
+        <div class="section-content">
+         <div class="form-group">
+          <div class="field-label">Сменить пароль</div>
+          <input id="profile-pass-new" class="input" type="password" placeholder="Новый пароль" />
+         </div>
+         <div class="form-group">
+          <div class="field-label">Подтвердите новый пароль</div>
+          <input id="profile-pass-confirm" class="input" type="password" placeholder="Повторите пароль" />
+         </div>
+         <button class="btn btn-primary btn-sm" id="btn-change-password">Обновить пароль</button>
 
-</div>
+         <div style="margin-top:10px;font-size:11px;color:var(--muted);">
+          Токен (цифровой номер) остаётся прежним. Вы можете дать клиенту новый пароль, если он забыл старый.
+         </div>
+        </div>
+       </div>
+      </div>
+     </section>
 
-<div class="secure">
+     <!-- ADDRESSES -->
+     <section id="section-addresses" class="hidden">
+      <div class="content-header">
+       <div>
+        <div class="content-title">Адреса доставки</div>
+        <div class="content-subtitle">
+         Сохранённые адреса для быстрого оформления заказов.
+        </div>
+       </div>
+      </div>
 
-🔒 Захищене підключення
+      <div class="content-row-2">
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Мои адреса</div>
+         <span class="section-badge" id="addresses-count">0 адресов</span>
+        </div>
+        <div class="section-content" id="addresses-list">
+         Пока нет сохранённых адресов.
+        </div>
+       </div>
 
-</div>
+       <div class="section-card">
+        <div class="section-header">
+         <div class="section-title">Добавить новый адрес</div>
+         <span class="section-badge">Новый</span>
+        </div>
+        <div class="section-content">
+         <div class="form-group">
+          <div class="field-label">Город</div>
+          <input id="addr-city" class="input" placeholder="Например: Минск" />
+         </div>
+         <div class="form-group">
+          <div class="field-label">Улица, дом, квартира</div>
+          <input id="addr-line" class="input" placeholder="Улица, дом, подъезд, код" />
+         </div>
+         <div class="form-group">
+          <div class="field-label">Комментарий для курьера</div>
+          <input id="addr-comment" class="input" placeholder="Домофон, ориентиры и т.д." />
+         </div>
+         <div class="form-group" style="display:flex;align-items:center;gap:6px;font-size:12px;">
+          <input id="addr-main" type="checkbox" style="width:14px;height:14px;" />
+          <span>Сделать адрес основным</span>
+         </div>
+         <button class="btn btn-primary btn-sm" id="btn-add-address">Добавить адрес</button>
+        </div>
+       </div>
+      </div>
+     </section>
 
-<div class="footer-note">
+     <!-- SUPPORT -->
+     <section id="section-support" class="hidden">
+      <div class="content-header">
+       <div>
+        <div class="content-title">Поддержка</div>
+        <div class="content-subtitle">
+         Чат с менеджером AM Market по вопросам заказов, гарантий и доставок.
+        </div>
+       </div>
+      </div>
 
-Якщо ви втратили дані для входу,
-зв'яжіться з менеджером.
+      <div class="section-card chat-wrap">
+       <div class="chat-status">
+        <span class="status-dot"></span>
+        Менеджер онлайн в рабочее время. Сейчас вы пишете в демонстрационный чат.
+       </div>
 
-</div>
+       <div class="chat-window" id="chat-window">
+        <div class="msg msg-manager">
+         Здравствуйте! 👋<br />
+         Это демо-чат AM Market. Вы можете написать вопрос, чтобы посмотреть, как будет выглядеть переписка.
+         <div class="msg-time">Только что</div>
+        </div>
+       </div>
 
-</div>
+       <div class="chat-input-row">
+        <input
+         id="chat-input"
+         class="input"
+         placeholder="Напишите сообщение менеджеру..."
+        />
+        <button class="btn btn-primary btn-sm" id="chat-send-btn">Отправить</button>
+       </div>
+      </div>
+     </section>
+    </main>
+   </div>
+  </div>
+ </div>
 
-</div>
+ <script>
+  // Простые демо-данные для одного клиента
+  const demoClient = {
+   token: "749201",
+   password: "123456",
+   name: "Александр Иванов",
+   phone: "+375 (29) 123-45-67",
+   email: "client@example.com",
+   tier: "Premium",
+   bonuses: {
+    balance: 320,
+    frozen: 40,
+    cashback: 3,
+    toNextTier: "180 BYN до статуса Ultra"
+   },
+   addresses: [
+    {
+     id: 1,
+     city: "Минск",
+     line: "ул. Ленина, д. 10, кв. 25",
+     comment: "Код домофона 1234",
+     main: true
+    },
+    {
+     id: 2,
+     city: "Минск",
+     line: "ул. Победителей, д. 5, офис 314",
+     comment: 'Бизнес-центр "Sky"',
+     main: false
+    }
+   ],
+   orders: {
+    current: [
+     {
+      id: "AM-10492",
+      status: "В пути",
+      statusCode: "in_transit",
+      sum: 1275,
+      currency: "BYN",
+      items: [
+       { name: "iPhone 14 Pro 256GB", qty: 1 },
+       { name: "AirPods Pro 2", qty: 1 }
+      ],
+      eta: "08.12.2025",
+      paymentStatus: "Оплачено",
+      address: "г. Минск, ул. Ленина, д. 10, кв. 25",
+      tracking: "TRK-BY-9921",
+      docs: ["Чек", "Товарный чек", "Накладная"]
+     }
+    ],
+    history: [
+     {
+      id: "AM-99201",
+      date: "12.11.2025",
+      sum: 1990,
+      status: "Доставлен",
+      docs: true
+     },
+     {
+      id: "AM-98110",
+      date: "05.10.2025",
+      sum: 890,
+      status: "Доставлен",
+      docs: true
+     },
+     {
+      id: "AM-97440",
+      date: "21.09.2025",
+      sum: 1290,
+      status: "Отменён",
+      docs: false
+     }
+    ]
+   },
+   offers: [
+    "iPhone 15 Pro со скидкой для вас −15%",
+    "AirPods Pro 2 в подарок при покупке iPhone",
+    "Промокод AMSALE7 -7% на ваш заказ"
+   ],
+   discounts: [
+    "Персональная скидка на аксессуары Apple −10%",
+    "Скидка ко дню рождения −15% (активна за 7 дней до даты)",
+    "Фиксированная скидка для постоянных клиентов −3%"
+   ]
+  };
 
-<script src="app.js"></script>
+  const DEMO_MODE = true; // true = включён демо-режим, false = отключён
 
+  const demoAccount = {
+   token: "000000",
+   password: "000000",
+   name: "Демо-клиент"
+  };
+
+  const clients = [
+   demoClient,
+   {
+    token: "882314",
+    password: "458921",
+    name: "Алеся Гук",
+    phone: "+375 (33) 674-91-07",
+    email: "отсутствует",
+    tier: "Standard",
+    bonuses: {
+     balance: 42,
+     frozen: 0,
+     cashback: 2,
+     toNextTier: "458 BYN до статуса Premium"
+    },
+    addresses: [
+     {
+      id: 1,
+      city: "Брест",
+      line: "Варшавское шоссе 11",
+      comment: "ЕвроПочта 65",
+      main: true
+     }
+    ],
+    orders: {
+     current: [],
+     history: [
+      {
+       id: "AM-94510",
+       date: "26.01.2026",
+       sum: 2085,
+       status: "В пути",
+       docs: true
+      }
+     ]
+    },
+    offers: [
+     "AirPods 3 со скидкой −5%",
+     "Чехлы для iPad со скидкой −7%"
+    ],
+    discounts: [
+     "Базовая скидка постоянного клиента −2%"
+    ]
+   }
+  ];
+
+  let currentClient = null;
+
+  function $(id) {
+   return document.getElementById(id);
+  }
+
+  function showDashboard() {
+   $("login-screen").classList.add("hidden");
+   $("dashboard").classList.remove("hidden");
+   renderClientData();
+  }
+
+  
+  function logout() {
+    currentClient = null;
+
+    const dash = $("dashboard");
+    const login = $("login-screen");
+
+    if (dash) dash.classList.add("hidden");
+    if (login) login.classList.remove("hidden");
+
+    $("token-input").value = "";
+    $("password-input").value = "";
+    $("login-error").style.display = "none";
+
+    // Reset navigation view to Main on next login
+    document.querySelectorAll(".nav-item").forEach((b, i) => {
+      b.classList.toggle("active", i === 0);
+    });
+
+    Object.keys(sections).forEach(key => {
+      sections[key].classList.toggle("hidden", key !== "main");
+    });
+  }
+
+
+  function renderClientData() {
+   if (!currentClient) return;
+
+   // greeting
+   $("user-greeting").textContent = `Здравствуйте, ${currentClient.name}`;
+
+   // pills
+   $("pill-tier").textContent = `Статус: ${currentClient.tier || "Клиент"}`;
+   $("pill-token").textContent = `Токен: ${currentClient.token}`;
+
+   // bonuses
+   const { balance, frozen, cashback, toNextTier } = currentClient.bonuses;
+   $("bonus-balance").textContent = balance + " BYN";
+   $("bonus-cashback").textContent = cashback + "%";
+   $("bonus-to-next").textContent = toNextTier || "—";
+   $("bonus-balance-2").textContent = balance + " BYN";
+   $("bonus-frozen").textContent = frozen + " BYN";
+
+   // addresses summary
+   const addrSummary = currentClient.addresses.length
+    ? `Сохранённых адресов: ${currentClient.addresses.length}. Основной — ${currentClient.addresses.find(a => a.main)?.city || ""}.`
+    : "Пока нет сохранённых адресов.";
+   $("addresses-summary").textContent = addrSummary;
+   $("addresses-count").textContent = `${currentClient.addresses.length} адресов`;
+
+   // personal offers
+   if (currentClient.offers && currentClient.offers.length) {
+    $("personal-offers").innerHTML = currentClient.offers
+     .map(o => `• ${o}`)
+     .join("<br>");
+   }
+
+   // orders summary
+   const totalSum = currentClient.orders.history.reduce((acc, o) => acc + o.sum, 0) +
+    currentClient.orders.current.reduce((acc, o) => acc + o.sum, 0);
+   const totalCount = currentClient.orders.history.length + currentClient.orders.current.length;
+   $("orders-summary").innerHTML =
+    `Всего заказов: <strong>${totalCount}</strong><br>` +
+    `Сумма всех заказов: <strong>${totalSum} BYN</strong>`;
+
+   // current order card
+   renderCurrentOrderCard();
+
+   // orders section
+   renderOrdersSection();
+
+   // profile
+   $("profile-name").value = currentClient.name || "";
+   $("profile-phone").value = currentClient.phone || "";
+   $("profile-email").value = currentClient.email || "";
+
+   // addresses list
+   renderAddressesList();
+  }
+
+  function renderCurrentOrderCard() {
+   const cardContent = $("current-order-content");
+   const statusBadge = $("current-order-status-badge");
+   const currentOrders = currentClient.orders.current;
+
+   if (!currentOrders.length) {
+    statusBadge.textContent = "В пути";
+    cardContent.innerHTML = "iPhone 17 Pro 256 GB";
+    return;
+   }
+
+   const o = currentOrders[0];
+   statusBadge.textContent = o.status;
+   cardContent.innerHTML = `
+    <div class="kpi-row" style="margin-bottom:6px;">
+     <div class="kpi-pill accent">Заказ № <strong>${o.id}</strong></div>
+     <div class="kpi-pill">Сумма: <strong>${o.sum} ${o.currency}</strong></div>
+     <div class="kpi-pill">Прогноз доставки: <strong>${o.eta}</strong></div>
+    </div>
+    <div style="font-size:12px;margin-bottom:6px;">
+     Адрес доставки: <strong>${o.address}</strong>
+    </div>
+    <div style="font-size:12px;margin-bottom:6px;">
+     Состав заказа:
+     <br>
+     ${o.items.map(i => `– ${i.name} (x${i.qty})`).join("<br>")}
+    </div>
+    <div class="kpi-row" style="margin-top:6px;">
+     <div class="badge-status success">${o.paymentStatus}</div>
+     <div class="badge-status pending">Трекинг: ${o.tracking}</div>
+    </div>
+    <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
+     <button class="btn btn-primary btn-sm">Отследить заказ</button>
+     <button class="btn btn-ghost btn-sm">Связаться с поддержкой по заказу</button>
+    </div>
+   `;
+  }
+
+  function renderOrdersSection() {
+   // текущие
+   const currentList = $("orders-current-list");
+   const currentOrders = currentClient.orders.current;
+   $("orders-current-count").textContent = `${currentOrders.length} активных 1`;
+
+   if (!currentOrders.length) {
+    currentList.textContent = "iPhone 17 Pro 256 GB";
+   } else {
+    currentList.innerHTML = currentOrders
+     .map(o => `
+      <div style="border-radius:12px;border:1px solid rgba(255,255,255,0.08);padding:8px 9px;margin-bottom:6px;font-size:12px;">
+       <div style="display:flex;justify-content:space-between;gap:6px;margin-bottom:4px;">
+        <div>Заказ № <strong>${o.id}</strong></div>
+        <div class="badge-status pending">${o.status}</div>
+       </div>
+       <div>Сумма: <strong>${o.sum} ${o.currency}</strong></div>
+       <div>Адрес: ${o.address}</div>
+       <div>Прогноз доставки: <strong>${o.eta}</strong></div>
+       <div style="margin-top:4px;">Оплата: <span class="badge-status success">${o.paymentStatus}</span></div>
+       <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="btn btn-primary btn-sm">Отследить</button>
+        <button class="btn btn-ghost btn-sm">Документы</button>
+       </div>
+      </div>
+     `)
+     .join("");
+   }
+
+   // история
+   const tbody = $("orders-history-table").querySelector("tbody");
+   tbody.innerHTML = "";
+   if (!currentClient.orders.history.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 5;
+    td.textContent = "История заказов появится после первой покупки.";
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+   } else {
+    currentClient.orders.history.forEach(o => {
+     const tr = document.createElement("tr");
+     tr.innerHTML = `
+      <td>${o.id}</td>
+      <td>${o.date}</td>
+      <td>${o.sum} BYN</td>
+      <td>
+       <span class="badge-status ${o.status === "Доставлен" ? "success" : ""}">
+        ${o.status}
+       </span>
+      </td>
+      <td>
+       ${
+        o.docs
+         ? '<button class="btn btn-ghost btn-sm">Скачать</button>'
+         : '<span style="font-size:11px;color:var(--muted);">Недоступно</span>'
+       }
+      </td>
+     `;
+     tbody.appendChild(tr);
+    });
+   }
+  }
+
+  function renderAddressesList() {
+   const container = $("addresses-list");
+   const addresses = currentClient.addresses;
+
+   if (!addresses.length) {
+    container.textContent = "Пока нет сохранённых адресов.";
+    $("addresses-summary").textContent = "Пока нет сохранённых адресов.";
+    $("addresses-count").textContent = "0 адресов";
+    return;
+   }
+
+   container.innerHTML = "";
+   addresses.forEach(addr => {
+    const div = document.createElement("div");
+    div.className = "pill-address";
+    div.innerHTML = `
+     <div>
+      <div><strong>${addr.city}</strong></div>
+      <div style="font-size:12px;">${addr.line}</div>
+      <div style="font-size:11px;color:var(--muted);">${addr.comment || ""}</div>
+     </div>
+     <div class="pill-address-actions">
+      ${
+       addr.main
+        ? '<span class="pill-address-main">Основной</span>'
+        : '<button class="btn btn-ghost btn-sm btn-make-main" data-id="' +
+         addr.id +
+         '">Сделать основным</button>'
+      }
+      <button class="btn btn-ghost btn-sm btn-delete-addr" data-id="${addr.id}">Удалить</button>
+     </div>
+    `;
+    container.appendChild(div);
+   });
+
+   container.querySelectorAll(".btn-make-main").forEach(btn => {
+    btn.addEventListener("click", () => {
+     const id = Number(btn.getAttribute("data-id"));
+     currentClient.addresses = currentClient.addresses.map(a => ({
+      ...a,
+      main: a.id === id
+     }));
+     renderAddressesList();
+     renderClientData();
+    });
+   });
+
+   container.querySelectorAll(".btn-delete-addr").forEach(btn => {
+    btn.addEventListener("click", () => {
+     const id = Number(btn.getAttribute("data-id"));
+     currentClient.addresses = currentClient.addresses.filter(a => a.id !== id);
+     renderAddressesList();
+     renderClientData();
+    });
+   });
+  }
+
+  // NAVIGATION
+  const navButtons = document.querySelectorAll(".nav-item");
+  const sections = {
+   main: document.getElementById("section-main"),
+   orders: document.getElementById("section-orders"),
+   bonuses: document.getElementById("section-bonuses"),
+   profile: document.getElementById("section-profile"),
+   addresses: document.getElementById("section-addresses"),
+   support: document.getElementById("section-support")
+  };
+
+  navButtons.forEach(btn => {
+   btn.addEventListener("click", () => {
+    const target = btn.getAttribute("data-section");
+    if (!target) return;
+
+    navButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    Object.keys(sections).forEach(key => {
+     sections[key].classList.toggle("hidden", key !== target);
+    });
+   });
+  });
+
+  // LOGIN HANDLERS
+  
+$("login-btn").addEventListener("click", () => {
+  const token = $("token-input").value.trim();
+  const pass = $("password-input").value.trim();
+
+  const foundClient = clients.find(
+    c => String(c.token) === String(token) && String(c.password) === String(pass)
+  );
+
+  if (foundClient) {
+    currentClient = structuredClone
+      ? structuredClone(foundClient)
+      : JSON.parse(JSON.stringify(foundClient));
+
+    $("login-error").style.display = "none";
+    showDashboard();
+  } else {
+    $("login-error").style.display = "block";
+  }
+});
+
+
+  $("fill-demo-btn").addEventListener("click", () => {
+   $("token-input").value = demoClient.token;
+   $("password-input").value = demoClient.password;
+   $("login-error").style.display = "none";
+  });
+
+  $("logout-btn").addEventListener("click", logout);
+
+  // PROFILE SAVE (имитация)
+  $("btn-save-profile").addEventListener("click", () => {
+   if (!currentClient) return;
+   currentClient.name = $("profile-name").value.trim() || currentClient.name;
+   currentClient.phone = $("profile-phone").value.trim();
+   currentClient.email = $("profile-email").value.trim();
+   renderClientData();
+   alert("Данные профиля обновлены (локально, в рамках демонстрации).");
+  });
+
+  $("btn-change-password").addEventListener("click", () => {
+   const p1 = $("profile-pass-new").value.trim();
+   const p2 = $("profile-pass-confirm").value.trim();
+   if (!p1 || !p2) {
+    alert("Введите новый пароль и подтвердите его.");
+    return;
+   }
+   if (p1 !== p2) {
+    alert("Пароли не совпадают.");
+    return;
+   }
+   demoClient.password = p1;
+   if (currentClient) currentClient.password = p1;
+   $("profile-pass-new").value = "";
+   $("profile-pass-confirm").value = "";
+   alert("Пароль обновлён для демо-клиента (в пределах данного файла).");
+  });
+
+  // ADD ADDRESS
+  $("btn-add-address").addEventListener("click", () => {
+   if (!currentClient) return;
+   const city = $("addr-city").value.trim();
+   const line = $("addr-line").value.trim();
+   const comment = $("addr-comment").value.trim();
+   const main = $("addr-main").checked;
+
+   if (!city || !line) {
+    alert("Укажите хотя бы город и улицу.");
+    return;
+   }
+
+   const newId =
+    (currentClient.addresses[currentClient.addresses.length - 1]?.id || 0) + 1;
+
+   if (main) {
+    currentClient.addresses = currentClient.addresses.map(a => ({
+     ...a,
+     main: false
+    }));
+   }
+
+   currentClient.addresses.push({
+    id: newId,
+    city,
+    line,
+    comment,
+    main
+   });
+
+   $("addr-city").value = "";
+   $("addr-line").value = "";
+   $("addr-comment").value = "";
+   $("addr-main").checked = false;
+
+   renderAddressesList();
+   renderClientData();
+  });
+
+  // CHAT
+  function appendChatMessage(text, from = "user") {
+   const wrap = $("chat-window");
+   const msg = document.createElement("div");
+   msg.className = "msg " + (from === "user" ? "msg-user" : "msg-manager");
+   msg.innerHTML = `
+    ${text}
+    <div class="msg-time">Только что</div>
+   `;
+   wrap.appendChild(msg);
+   wrap.scrollTop = wrap.scrollHeight;
+  }
+
+  $("chat-send-btn").addEventListener("click", () => {
+   const input = $("chat-input");
+   const text = input.value.trim();
+   if (!text) return;
+   appendChatMessage(text, "user");
+   input.value = "";
+
+   setTimeout(() => {
+    appendChatMessage(
+     "Спасибо за сообщение! В реальном кабинете менеджер AM Market ответит вам здесь.",
+     "manager"
+    );
+   }, 700);
+  });
+
+  $("chat-input").addEventListener("keydown", (e) => {
+   if (e.key === "Enter") {
+    e.preventDefault();
+    $("chat-send-btn").click();
+   }
+  });
+
+  // Autofill demo data for quick testing
+  window.addEventListener("load", () => {
+   // optionally autofill demo creds
+   // $("token-input").value = demoClient.token;
+   // $("password-input").value = demoClient.password;
+  });
+ </script>
 </body>
 </html>
